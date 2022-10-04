@@ -1,0 +1,7 @@
+.add-task{
+    border: 1px #000 solid;
+    background-color: #000;
+    color: #fff;
+    border-radius: 5px;
+    text-align: center;
+}
