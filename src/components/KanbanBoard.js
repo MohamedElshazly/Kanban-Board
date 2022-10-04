@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import KanbanColumn from './KanbanColumn';
 import KanbanItem from './KanbanItem';
+import {ItemTypes} from './ItemTypes';
 import update from 'immutability-helper';
 import {v4 as uuidv4} from 'uuid';
 import '../styles/board.css';
@@ -18,7 +19,7 @@ const tasksList = [
     { id: uuidv4(), name: "do something9", status: "in_review", priority: "low"},
     { id: uuidv4(), name: "do something10", status: "done", priority: "low"},
 ];
-const columns = ['backlog', 'todo', 'in_progress', 'in_review', 'done'];
+
 const labels = {
     backlog: 'Backlog',
     todo: 'ToDo',
@@ -29,12 +30,19 @@ const labels = {
 const priorities = ['highest', 'high', 'low', 'noprio']
 
 export default function KanbanBoard() {
+    const [columns] = useState([
+        {title: 'backlog', accepts:[ItemTypes.BACKLOG, ItemTypes.TODO, ItemTypes.IN_REVIEW, ItemTypes.IN_PROGRESS]},
+        {title: 'todo', accepts:[ItemTypes.BACKLOG, ItemTypes.TODO, ItemTypes.IN_REVIEW, ItemTypes.IN_PROGRESS]},
+        {title: 'in_progress', accepts:[ItemTypes.BACKLOG, ItemTypes.TODO, ItemTypes.IN_REVIEW, ItemTypes.IN_PROGRESS]},
+        {title: 'in_review', accepts:[ItemTypes.BACKLOG, ItemTypes.TODO, ItemTypes.IN_REVIEW, ItemTypes.IN_PROGRESS]},
+        {title: 'done', accepts:[ItemTypes.IN_REVIEW]},
+    ]);
     const [tasks, setTaskStatus] = useState(tasksList);
 
     useEffect(() => {
         let orderedTasks = [...tasks].sort((a, b) =>  priorities.indexOf(a.priority) - priorities.indexOf(b.priority) )
         setTaskStatus(orderedTasks);
-    }, [tasks])
+    }, [])
 
     const changeTaskStatus = useCallback((id, status) => {
         let task = tasks.find(task => task.id === id);
@@ -48,22 +56,24 @@ export default function KanbanBoard() {
     const addTask = useCallback((name, status, priority) => {
         let task = {id: uuidv4(), name:name, status:status, priority: priority};
         let newTasks = update(tasks, {$push: [task]});
-        setTaskStatus(newTasks);
+        let orderedTasks = [...newTasks].sort((a, b) =>  priorities.indexOf(a.priority) - priorities.indexOf(b.priority) )
+        setTaskStatus(orderedTasks);
     }, [tasks]);
 
     return (
         <div className="board">
-            {columns.map(column => (
-                <KanbanColumn key={column}
-                    status={column}
+            {columns.map(({title, accepts}, index) => (
+                <KanbanColumn key={index}
+                    accept={accepts}
+                    status={title}
                     changeTaskStatus={changeTaskStatus}
                     addTask={addTask}>
 
                     <div className="col">
-                        <div className="col-head">{labels[column]}</div>
+                        <div className="col-head">{labels[title]}</div>
                         <div className='tasks'>
                             {tasks 
-                                .filter(item => item.status === column)
+                                .filter(item => item.status === title)
                                 .map(item => (
                                     <KanbanItem key={item.id} item={item} />
                                 ))

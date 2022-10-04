@@ -3,9 +3,9 @@ import { useDrop } from "react-dnd";
 
 import '../styles/column.css'
 
-export default function KanbanColumn({ status, changeTaskStatus, addTask, children }) {
+export default function KanbanColumn({ accept, status, changeTaskStatus, addTask, children }) {
   const [, drop] = useDrop({
-    accept: 'card',
+    accept,
     drop(item) {
       changeTaskStatus(item.id, status);
     }

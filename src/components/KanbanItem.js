@@ -6,7 +6,7 @@ import '../styles/card.css'
 export default function KanbanItem({ item }) {
     const id = item.id;
     const [{ isDragging }, drag] = useDrag({
-        type: 'card',
+        type: `${item.status}`,
         item: {id},
         collect: monitor => ({
             isDragging: monitor.isDragging()
