@@ -1,0 +1,112 @@
+.dim{
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .3);
+}
+.input, p{
+    margin: 0
+}
+.popup{
+    position: relative;
+}
+.add-task{
+    display: none;
+    border: 1px #000 solid;
+    background-color: #000;
+    color: #fff;
+    /* text-align: center; */
+    padding: 20px;
+    border-radius: 10px;
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9;
+}
+.form-content{
+    display: flex;
+    flex-direction: column;
+}
+.form-content .fields{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: flex-start;
+    margin: 15px;
+    padding: 15px;
+    flex: 1;
+}
+.form-content label{
+    display: block;
+    padding-bottom: 5px;
+}
+.form-content input, .form-content select{
+    box-shadow: inset 1px 1px 3px #ccc;
+    outline: 0;
+    appearance: none;
+    margin: 10px 5px;
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+}
+.form-content input:hover,
+.form-content input:focus{
+    background-color: #eee;
+}
+.form-content select{
+    padding: 5px;
+}
+.form-content select:hover{
+    background-color: #eee;
+    cursor: pointer;
+}
+.form-content span{
+    position: relative;
+}
+.form-content span::after{
+    content: '▼';
+    /* font-size: 90px; */
+    position: absolute;
+    color: #000;
+    top: -35px;
+    right: -190px;
+}
+
+/*  */
+
+.form-content .btns{
+    display: flex;
+    gap: 10px;
+    align-self: center;
+}
+
+.form-content .btns .add{
+    outline: 0;
+    width: 100px;
+    height: 30px;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    background-color: #000;
+    color: #fff;
+    font-weight: 700;
+    transition: background-color 0.3s, color 0.3s ;
+}
+.form-content .btns .add:hover{
+    cursor: pointer;
+    background-color: #fff;
+    color: #000;
+}
+.form-content .btns .close{
+    outline: 0;
+    width: 100px;
+    height: 30px;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    background-color: #000;
+    color: #fff;
+    font-weight: 700;
+    transition: background-color 0.3s, color 0.3s ;
+}
+.form-content .btns .close:hover{
+    cursor: pointer;
+    background-color: red;
+    color: #fff;
+}

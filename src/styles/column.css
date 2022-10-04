@@ -1,20 +1,27 @@
-.add-task{
-    border: 1px #000 solid;
-    background-color: #000;
-    color: #fff;
-    border-radius: 5px;
-    text-align: center;
+.dim{
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .3);
 }
+
 .col{
     display: flex;
     flex-direction: column;
     gap: 10px;
     border: 1px #000 solid;
-    height: 500px;
+    min-height: 400px;
+    height: max-content;
     width: 200px;
 }
 .col-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 0 10px;
     border: 1px #ccc solid;
-    text-align: center;
+}
+.col-head span{
+    font-weight: 900;
+    font-size: 25px;
+}
+.col-head span:hover{
+    cursor: pointer;
 }

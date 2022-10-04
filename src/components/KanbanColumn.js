@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDrop } from "react-dnd";
 import KanbanItem from './KanbanItem';
+import Form from './Form';
 
 
 import '../styles/column.css'
@@ -12,17 +13,19 @@ export default function KanbanColumn({ accept, status, header, tasks, changeTask
       changeTaskStatus(item.id, status);
     }
   });
-  const handleAdd = (e) => {
-    e.preventDefault();
-    const name = document.getElementById(`add-${status}`).value;
-    const priority = document.getElementById(`prio-${status}`).value;
-    document.getElementById(`add-${status}`).value = '';
-    addTask(name, status, priority);
+  
+  const openForm = () => {
+    document.getElementById(`add-task-${status}`).style.display = "block";
+    document.getElementById(`add-task-${status}`).classList.add('dim');
   }
+  
   return (
     <div ref={drop}>
       <div className="col">
-        <div className="col-head">{header}</div>
+        <div className="col-head">
+          <h4>{header}</h4>
+          <span onClick={openForm}>+</span>
+        </div>
         <div className='tasks'>
           {tasks
             .filter(item => item.status === status)
@@ -32,24 +35,7 @@ export default function KanbanColumn({ accept, status, header, tasks, changeTask
           }
         </div>
       </div>
-      <div className="add-task">
-        <form action="#" onSubmit={handleAdd}>
-          
-          <label htmlFor={`add-${status}`}>Add a task!</label>
-          <input type="text" name='add' id={`add-${status}`} />
-
-          <label htmlFor={`prio-${status}`}></label>
-          <select name="prio" id={`prio-${status}`}>
-            <option value="highest">Highest</option>
-            <option value="high">High</option>
-            <option value="low">Low</option>
-            <option value="noprio" selected>No priority</option>
-          </select>
-
-          <button type='submit'>Add!</button>
-        </form>
-
-      </div>
+      <Form status={status} header={header} addTask={addTask}/>
 
     </div>
   )
