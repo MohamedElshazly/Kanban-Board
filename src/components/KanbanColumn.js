@@ -1,9 +1,11 @@
 import React from 'react'
 import { useDrop } from "react-dnd";
+import KanbanItem from './KanbanItem';
+
 
 import '../styles/column.css'
 
-export default function KanbanColumn({ accept, status, changeTaskStatus, addTask, children }) {
+export default function KanbanColumn({ accept, status, header, tasks, changeTaskStatus, addTask }) {
   const [, drop] = useDrop({
     accept,
     drop(item) {
@@ -19,11 +21,23 @@ export default function KanbanColumn({ accept, status, changeTaskStatus, addTask
   }
   return (
     <div ref={drop}>
-      {children}
-      <div className="add-task"> 
+      <div className="col">
+        <div className="col-head">{header}</div>
+        <div className='tasks'>
+          {tasks
+            .filter(item => item.status === status)
+            .map(item => (
+              <KanbanItem key={item.id} item={item} />
+            ))
+          }
+        </div>
+      </div>
+      <div className="add-task">
         <form action="#" onSubmit={handleAdd}>
+          
           <label htmlFor={`add-${status}`}>Add a task!</label>
           <input type="text" name='add' id={`add-${status}`} />
+
           <label htmlFor={`prio-${status}`}></label>
           <select name="prio" id={`prio-${status}`}>
             <option value="highest">Highest</option>
@@ -31,6 +45,7 @@ export default function KanbanColumn({ accept, status, changeTaskStatus, addTask
             <option value="low">Low</option>
             <option value="noprio" selected>No priority</option>
           </select>
+
           <button type='submit'>Add!</button>
         </form>
 

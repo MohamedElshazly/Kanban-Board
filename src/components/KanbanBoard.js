@@ -1,6 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import KanbanColumn from './KanbanColumn';
-import KanbanItem from './KanbanItem';
 import {ItemTypes} from './ItemTypes';
 import update from 'immutability-helper';
 import {v4 as uuidv4} from 'uuid';
@@ -66,21 +65,10 @@ export default function KanbanBoard() {
                 <KanbanColumn key={index}
                     accept={accepts}
                     status={title}
+                    header={labels[title]}
+                    tasks = {tasks}
                     changeTaskStatus={changeTaskStatus}
-                    addTask={addTask}>
-
-                    <div className="col">
-                        <div className="col-head">{labels[title]}</div>
-                        <div className='tasks'>
-                            {tasks 
-                                .filter(item => item.status === title)
-                                .map(item => (
-                                    <KanbanItem key={item.id} item={item} />
-                                ))
-                            }
-                        </div>
-                    </div>
-                </KanbanColumn>
+                    addTask={addTask} />
             ))}
             
         </div>
