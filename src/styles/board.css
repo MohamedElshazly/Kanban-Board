@@ -4,6 +4,8 @@
     --secondary-one: #1e2a41; 
     --secondary-two: #2c2543; 
     --card: #50233e; 
+    --low-opacity-card: #382d6296;
+    --card-alt: #382d62;
     --alert: #551e2d;
     --text: #f7f7f8;  
 }

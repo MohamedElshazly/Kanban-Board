@@ -4,8 +4,8 @@
     --secondary-one: #1e2a41; 
     --secondary-two: #2c2543; 
     --card: #50233e;
-    --low-opacity-card: #50233e69;
-    --card-alt: #4b284f; 
+    --low-opacity-card: #382d6296;
+    --card-alt: #382d62; 
     --alert: #551e2d;
     --text: #f7f7f8;    
   }
@@ -21,10 +21,9 @@
     border: 1px var(--alt-primary) solid;
     width: 200px;
     height: 70px;
-    background-color: #000;
     color: var(--text);
     margin: 10px;
-    background-color: var(--primary);
+    background-color: var(--card-alt);
 }
 .card:hover{
     cursor: pointer;
