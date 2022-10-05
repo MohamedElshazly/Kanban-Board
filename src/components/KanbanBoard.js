@@ -122,8 +122,7 @@ export default function KanbanBoard() {
                             addTask={addTask} />
                     ))}
                 </div>
-
-
+                
             </div>
         )
     }

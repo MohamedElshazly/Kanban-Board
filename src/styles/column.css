@@ -9,7 +9,7 @@
     border: 1px #000 solid;
     min-height: 400px;
     height: max-content;
-    width: 200px;
+    width: max-content;
 }
 .col-head{
     display: flex;

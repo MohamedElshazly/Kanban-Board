@@ -6,10 +6,11 @@
     justify-content: center;
     align-items: center;
     border: 1px #ccc solid;
-    width: 100%;
+    width: 200px;
     height: 70px;
     background-color: #000;
     color: #fff;
+    margin: 10px;
 }
 .card:hover{
     cursor: pointer;
