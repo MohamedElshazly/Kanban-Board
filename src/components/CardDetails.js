@@ -10,7 +10,7 @@ export default function CardDetails({item, id}) {
   return (
     <div className='card-details' id={`card-details-${id}`}>
         <div className="card-details-content">
-          <div className="header">
+          <div className="card-header">
             <h1>{item.name}</h1>
             <h3>{item.priority} Priority</h3>
             <h4>belongs to the <strong>'{item.status}'</strong> status</h4>
