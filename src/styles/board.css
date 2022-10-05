@@ -1,3 +1,15 @@
+:root{
+    --primary: #21243f;
+    --alt-primary: #121212;  
+    --secondary-one: #1e2a41; 
+    --secondary-two: #2c2543; 
+    --card: #50233e; 
+    --alert: #551e2d;
+    --text: #f7f7f8;  
+}
+
+
+
 .board{
     display: grid;
     grid-template-rows: 1fr 4fr ;
@@ -10,6 +22,8 @@
     grid-column: 1 / span 1;
     padding: 0 10px;
     border-bottom: 3px solid #000;
+    background-color: var(--secondary-one);
+    color: var(--text);
     
 }
 .links ul{
@@ -21,20 +35,22 @@
     font-size: 20px;
 }
 .links .export{
+    border: 3px solid transparent;
     width: max-content;
     transition: border-bottom 0.02s;
 }
 .links .export:hover{
     cursor: pointer;
-    border-bottom: 2px solid #000;
+    border-bottom: 2px solid var(--text);
 }
 .links .import{
+    border: 3px solid transparent;
     width: max-content;
     transition: border-bottom 0.02s;
 }
 .links .import:hover{
     cursor: pointer;
-    border-bottom: 2px solid #000;
+    border-bottom: 2px solid var(--text);;
 }
 
 
